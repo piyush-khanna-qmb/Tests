@@ -86,8 +86,13 @@ def handle_client(client):
         try:
             packet = client.recv(BUFSIZ)
             print("In try block")
+
             # Only process non-empty packets
             if (len(packet) > 0):
+                if str(addresses[client]['address'][0]) == "127.0.0.1":
+                    print("Internal connection request")
+                    client.close()
+                    break
                 print('[', addresses[client]['address'][0], ']', 'IN Hex :', packet.hex(), '(length in bytes =', len(packet), ')')
                 keepAlive = read_incoming_packet(client, packet)
                 print("Incoming msg done")
