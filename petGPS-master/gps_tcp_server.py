@@ -90,7 +90,9 @@ def handle_client(client):
             if (len(packet) > 0):
                 print('[', addresses[client]['address'][0], ']', 'IN Hex :', packet.hex(), '(length in bytes =', len(packet), ')')
                 keepAlive = read_incoming_packet(client, packet)
+                print("Incoming msg done")
                 LOGGER('info', 'server_log.txt', addresses[client]['address'][0], addresses[client]['imei'], 'IN', packet.hex())
+                print("Logging done")
                 
                 # Disconnect if client sent disconnect signal
                 #if (keepAlive is False):
@@ -705,8 +707,8 @@ load_dotenv()
 
 # Details about host server
 HOST = ''
-# PORT = 5023
-PORT = 8005
+PORT = 5023
+# PORT = 8005
 BUFSIZ = 4096
 ADDR = (HOST, PORT)
 
