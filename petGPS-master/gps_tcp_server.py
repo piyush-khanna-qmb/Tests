@@ -70,7 +70,7 @@ def handle_client(client):
     Takes client socket as argument. 
     Handles a single client connection, by listening indefinitely for packets.
     """
-    
+    print("Handle start")
     # Initialize dictionaries for that client
     positions[client]['wifi'] = []
     positions[client]['gsm-cells'] = []
@@ -85,7 +85,7 @@ def handle_client(client):
         # Handle socket errors with a try/except approach
         try:
             packet = client.recv(BUFSIZ)
-            
+            print("In try block")
             # Only process non-empty packets
             if (len(packet) > 0):
                 print('[', addresses[client]['address'][0], ']', 'IN Hex :', packet.hex(), '(length in bytes =', len(packet), ')')
@@ -95,10 +95,10 @@ def handle_client(client):
                 print("Logging done")
                 
                 # Disconnect if client sent disconnect signal
-                #if (keepAlive is False):
-                #    print('[', addresses[client]['address'][0], ']', 'DISCONNECTED: socket was closed by client.')
-                #    client.close()
-                #    break
+                if (keepAlive is False):
+                   print('[', addresses[client]['address'][0], ']', 'DISCONNECTED: socket was closed by client.')
+                   client.close()
+                   break
 
             # Close socket if recv() returns 0 bytes, i.e. connection has been closed
             else:
@@ -706,7 +706,7 @@ load_dotenv()
 # gmaps = googlemaps.Client(key=GMAPS_API_KEY)
 
 # Details about host server
-HOST = "tests-lo6u.onrender.com"
+HOST = ""
 PORT = 5023
 # PORT = 8005
 BUFSIZ = 4096
