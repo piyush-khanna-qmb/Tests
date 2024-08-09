@@ -706,7 +706,7 @@ load_dotenv()
 # gmaps = googlemaps.Client(key=GMAPS_API_KEY)
 
 # Details about host server
-HOST = "https://tests-lo6u.onrender.com/"
+HOST = "tests-lo6u.onrender.com/"
 PORT = 5023
 # PORT = 8005
 BUFSIZ = 4096
